@@ -47,8 +47,8 @@ namespace Repository.Implementation
         {
             // In case AsNoTracking is used
             Context.Entry(entity).State = EntityState.Modified;
-             Context.SaveChangesAsync();
-            return await Task.FromResult(entity);
+            await Context.SaveChangesAsync();
+            return entity;
 
         }
 
@@ -71,14 +71,7 @@ namespace Repository.Implementation
         public Task<int> CountAll() => Context.Set<T>().CountAsync();
 
         public Task<int> CountWhere(Expression<Func<T, bool>> predicate)
-            => Context.Set<T>().CountAsync(predicate);
-
-        //public async Task<T> IAsyncRepository<T>.Add(T entity)
-        //{
-        //   var response =  await Context.Set<T>().AddAsync(entity);
-        //    await Context.SaveChangesAsync();
-        //    return response;
-        //}
+            => Context.Set<T>().CountAsync(predicate);        
 
         #endregion
 

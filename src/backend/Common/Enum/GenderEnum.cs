@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Common.Enum
 {
-    public enum GenderEnum
+    public enum Gender
     {
         Male = 0,
         Female = 1,
