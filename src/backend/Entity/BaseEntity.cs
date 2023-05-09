@@ -8,8 +8,7 @@ namespace Entity
 {
     public class BaseEntity
     {
-        //[Key]
-        //public long Id { get; set; }
+        
         public string CreatedBy { get; set; }
         [Required]
         [DefaultValue(typeof(DateTime), "getdate()")]
