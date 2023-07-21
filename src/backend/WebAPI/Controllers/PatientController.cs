@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<ActionResult> Register(PatientViewModel viewModel)
+        public async Task<ActionResult> Register([FromBody]PatientViewModel viewModel)
         {
             try
             {

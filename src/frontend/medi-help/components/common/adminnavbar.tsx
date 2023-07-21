@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 const AdminNavbar = () => {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
     <div className="flex-row lg:flex">
       <div
@@ -180,12 +180,12 @@ const AdminNavbar = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </div> 
       <div className="container mx-auto mt-4 lg:mt-12">
         <div className="p-4 mx-2 shadow-sm">
           <p>Add Dashboard Analytics </p>
         </div>
-      </div>
+      </div>  
     </div>
   );
 };
