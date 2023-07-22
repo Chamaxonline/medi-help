@@ -9,6 +9,7 @@ namespace Domain.Service.Interface
     public interface IPatientService
     {
         Task<Patient> Create(Patient patient);
-        Task<Patient> Get(int id);        
+        Task<Patient> Get(int id);
+        Task<List<Patient>> GetAll();
     }
 }

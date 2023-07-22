@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Repository.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +28,11 @@ namespace Domain.Service
         {
             return await _patientRepository.GetById(id);
         }
-                
+        public async Task<List<Patient>> GetAll()
+        {
+            IEnumerable<Patient> patients = await _patientRepository.GetAll();
+            return patients.ToList();
+        }
+
     }
 }

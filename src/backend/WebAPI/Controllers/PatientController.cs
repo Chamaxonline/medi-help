@@ -24,14 +24,14 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<ActionResult> Register([FromBody]PatientViewModel viewModel)
+        public async Task<ActionResult> Register([FromBody] PatientViewModel viewModel)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
-                }               
+                }
                 var patient = Mapper.Map<Patient>(viewModel);
                 var result = Mapper.Map<PatientViewModel>(await _patientService.Create(patient));
                 return Ok(result);
@@ -39,6 +39,22 @@ namespace WebAPI.Controllers
             catch (Exception ex)
             {
 
+                throw ex.InnerException;
+            }
+
+        }
+
+        [HttpGet]
+        [Route("GetAll")]
+        public async Task<ActionResult> GetAll()
+        {
+            try
+            {
+                var result = Mapper.Map<List<PatientViewModel>>(await _patientService.GetAll());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
                 throw ex.InnerException;
             }
 
