@@ -2,20 +2,19 @@
 import React, { Component, FormEvent, useState } from "react";
 import { MyPage } from "@/components/common/types";
 import { useForm } from "react-hook-form";
-import { submitFormData, FormData } from "@/services/api/patient";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { submitFormData, Patient } from "@/services/api/patient";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PatientPage: MyPage = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    phone:"",
-    address:""
+    phone: "",
+    address: "",
+    gender: 0,
   });
-
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,13 +29,16 @@ const PatientPage: MyPage = () => {
     // Here, you can perform any action with the form data, like sending it to the server
     try {
       const data = await submitFormData(formData);
-    
-        toast.success('Data saved successfully!', { position: toast.POSITION.TOP_RIGHT });
-      
-      } catch (error) {
-        toast.error('Failed to save data.', { position: toast.POSITION.TOP_RIGHT });
-        console.error('An error occurred while submitting the form:', error);
-      }
+
+      toast.success("Data saved successfully!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } catch (error) {
+      toast.error("Failed to save data.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      console.error("An error occurred while submitting the form:", error);
+    }
   };
 
   return (
@@ -123,7 +125,60 @@ const PatientPage: MyPage = () => {
                           placeholder="email@domain.com"
                         />
                       </div>
-
+                      <div className="md:col-span-5">
+                        <label htmlFor="gender">Gender</label>
+                        <div className="flex items-center mb-4">
+                          <input
+                            id="gender_male"
+                            type="radio"
+                            value="0"
+                          onChange={handleChange}
+                          checked={formData.gender == 0}
+                            name="gender"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          />
+                          <label
+                            htmlFor="default-radio-1"
+                            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          >
+                            Male
+                          </label>
+                        </div>
+                        <div className="flex items-center mb-4">
+                          <input
+                            id="gender_female"
+                            type="radio"
+                            value="1"
+                            onChange={handleChange}
+                            checked={formData.gender == 1}
+                            name="gender"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          />
+                          <label
+                            htmlFor="default-radio-2"
+                            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          >
+                            Female
+                          </label>
+                        </div>
+                        <div className="flex items-center mb-4">
+                          <input
+                            id="gender_other"
+                            type="radio"
+                            value="2"
+                            onChange={handleChange}
+                            checked={formData.gender == 2}
+                            name="gender"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          />
+                          <label
+                            htmlFor="default-radio-2"
+                            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          >
+                            Other
+                          </label>
+                        </div>
+                      </div>
                       <div className="md:col-span-5 text-right">
                         <div className="inline-flex items-end">
                           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
